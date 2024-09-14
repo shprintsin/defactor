@@ -1,10 +1,9 @@
-#' @title Set Label for a Column
-#' @name setLbl
-#' @description Merges labels into the original data frame for a specified column.
+#' @title Set Labels for All Columns by Pattern
+#' @name setLblPat
+#' @description Sets labels for all columns in a data frame that match a specified regex pattern.
 #' @param df A data frame.
-#' @param col The column name for which labels are to be set.
-#' @param suffix A string to append to the label column name (default: "_label").
-#' @return A data frame with the labels merged into the original data frame.
+#' @param pattern A regex pattern to match column names (default: ".*" for all columns).
+#' @return A data frame with labels set for the matching columns.
 #' @examples
 #' library(defactor)
 #' library(data.table)
@@ -36,25 +35,18 @@
 #' attr(df$V4, "labels") <- c("Very important" = 1)
 #' attr(df$V5, "labels") <- c("Very important" = 1)
 #' attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
-#' setLbl(df, "V5", suffix = "_label")
+#' setLblPat(df, pattern = "^V5")
 #' @export
-setLbl <- function(df, col, suffix = "_label") {
-  if (!exists("df") || !is.data.frame(df)) {
-    stop("Error: The input 'df' is not defined or is not a data frame.")
+setLblPat <- function(df, pattern = ".*") {
+  matching_columns <- grep(pattern, colnames(df), value = TRUE)
+
+  if (length(matching_columns) == 0) {
+    stop("Error: No columns match the provided pattern.")
   }
 
-  if (!col %in% names(df)) {
-    stop("Error: The specified column does not exist in the data frame.")
-  }
+  result <- df
+  result <- setlstLbl(df, matching_columns)
 
-  lookup_table <- getLbl(df, col, suffix)
-
-  if (length(lookup_table[["value"]] != NA) != 0) {
-    result <- merge(df, lookup_table, by = col, all.x = TRUE)
-  } else {
-    print(paste0(col, ': no labels Found'))
-    return(df)
-  }
   return(result)
 }
 

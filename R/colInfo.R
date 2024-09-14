@@ -1,10 +1,10 @@
-#' @title Set Label for a Column
-#' @name setLbl
-#' @description Merges labels into the original data frame for a specified column.
+#' @title Get Details for All Columns
+#' @name colInfo
+#' @description Retrieves labels and details for all columns in the data frame.
 #' @param df A data frame.
-#' @param col The column name for which labels are to be set.
-#' @param suffix A string to append to the label column name (default: "_label").
-#' @return A data frame with the labels merged into the original data frame.
+#' @param limit The maximum number of labels per column (default: 0, which means all labels).
+#' @param rep A logical value indicating whether to allow repetitions (default: FALSE).
+#' @return A data frame with variable names, labels, category values, and category labels.
 #' @examples
 #' library(defactor)
 #' library(data.table)
@@ -36,25 +36,30 @@
 #' attr(df$V4, "labels") <- c("Very important" = 1)
 #' attr(df$V5, "labels") <- c("Very important" = 1)
 #' attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
-#' setLbl(df, "V5", suffix = "_label")
+#' colInfo(df, limit = 1)
 #' @export
-setLbl <- function(df, col, suffix = "_label") {
+colInfo <- function(df, limit = 0, rep = FALSE) {
   if (!exists("df") || !is.data.frame(df)) {
     stop("Error: The input 'df' is not defined or is not a data frame.")
   }
 
-  if (!col %in% names(df)) {
-    stop("Error: The specified column does not exist in the data frame.")
-  }
+  all_vars <- data.frame()
 
-  lookup_table <- getLbl(df, col, suffix)
+  for (col in colnames(df)) {
+    varlabel <- attr(df[[col]], 'label')
+    if (length(varlabel) == 0) {
+      varlabel <- ""
+    }
+    lookup_table <- getLbl(df, col, limit = limit)
+    res <- cbind(var = col, var_label = varlabel, lookup_table)
 
-  if (length(lookup_table[["value"]] != NA) != 0) {
-    result <- merge(df, lookup_table, by = col, all.x = TRUE)
-  } else {
-    print(paste0(col, ': no labels Found'))
-    return(df)
+    if (!rep) {
+      res$var_label[-1] <- ""
+    }
+
+    names(res) <- c("var", "variable_label", "category_value", "category_label")
+    all_vars <- rbind(all_vars, res)
   }
-  return(result)
+  return(all_vars)
 }
 

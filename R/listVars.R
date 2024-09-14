@@ -1,10 +1,8 @@
-#' @title Set Label for a Column
-#' @name setLbl
-#' @description Merges labels into the original data frame for a specified column.
+#' @title Get Variable Labels
+#' @name listVars
+#' @description Retrieves all variable names and their labels from the data frame.
 #' @param df A data frame.
-#' @param col The column name for which labels are to be set.
-#' @param suffix A string to append to the label column name (default: "_label").
-#' @return A data frame with the labels merged into the original data frame.
+#' @return A data frame with variable names and their corresponding labels.
 #' @examples
 #' library(defactor)
 #' library(data.table)
@@ -36,25 +34,23 @@
 #' attr(df$V4, "labels") <- c("Very important" = 1)
 #' attr(df$V5, "labels") <- c("Very important" = 1)
 #' attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
-#' setLbl(df, "V5", suffix = "_label")
+#' listVars(df)
 #' @export
-setLbl <- function(df, col, suffix = "_label") {
+listVars <- function(df) {
   if (!exists("df") || !is.data.frame(df)) {
     stop("Error: The input 'df' is not defined or is not a data frame.")
   }
 
-  if (!col %in% names(df)) {
-    stop("Error: The specified column does not exist in the data frame.")
+  labels <- c()
+  names <- c()
+
+  for (col in colnames(df)) {
+    label <- attr(df[[col]], "label")
+    labels <- c(labels, ifelse(length(label) == 0, "", label))
+    names <- c(names, col)
   }
 
-  lookup_table <- getLbl(df, col, suffix)
-
-  if (length(lookup_table[["value"]] != NA) != 0) {
-    result <- merge(df, lookup_table, by = col, all.x = TRUE)
-  } else {
-    print(paste0(col, ': no labels Found'))
-    return(df)
-  }
+  result <- data.frame(var = names, labels = labels)
   return(result)
 }
 

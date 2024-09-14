@@ -1,10 +1,9 @@
-#' @title Set Label for a Column
-#' @name setLbl
-#' @description Merges labels into the original data frame for a specified column.
+#' @title Set Labels for All Columns by Selected Names
+#' @name setlstLbl
+#' @description Sets labels for all columns in a data frame that match a specified list of column names.
 #' @param df A data frame.
-#' @param col The column name for which labels are to be set.
-#' @param suffix A string to append to the label column name (default: "_label").
-#' @return A data frame with the labels merged into the original data frame.
+#' @param columns A character vector of column names for which labels should be set.
+#' @return A data frame with labels set for the specified columns.
 #' @examples
 #' library(defactor)
 #' library(data.table)
@@ -36,25 +35,37 @@
 #' attr(df$V4, "labels") <- c("Very important" = 1)
 #' attr(df$V5, "labels") <- c("Very important" = 1)
 #' attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
-#' setLbl(df, "V5", suffix = "_label")
+#' setlstLbl(df, columns = c("V2", "V4"))
 #' @export
-setLbl <- function(df, col, suffix = "_label") {
+setlstLbl <- function(df, columns = c()) {
   if (!exists("df") || !is.data.frame(df)) {
     stop("Error: The input 'df' is not defined or is not a data frame.")
   }
 
-  if (!col %in% names(df)) {
-    stop("Error: The specified column does not exist in the data frame.")
+  if (length(columns) == 0) {
+    stop("Error: No column names provided.")
   }
 
-  lookup_table <- getLbl(df, col, suffix)
-
-  if (length(lookup_table[["value"]] != NA) != 0) {
-    result <- merge(df, lookup_table, by = col, all.x = TRUE)
-  } else {
-    print(paste0(col, ': no labels Found'))
-    return(df)
+  invalid_columns <- columns[!columns %in% colnames(df)]
+  if (length(invalid_columns) > 0) {
+    stop(paste("Error: The following columns do not exist in the data frame:", paste(invalid_columns, collapse = ", ")))
   }
+
+  result <- df
+  for (col in columns) {
+    result <- setLbl(result, col)
+  }
+
   return(result)
 }
+
+
+
+
+
+
+
+
+
+
 

@@ -29,23 +29,52 @@ Load the package and use its functions to manage labels in your data frames:
 # Load the package
 library(defactor)
 
-# Example data frame with factors
-df <- data.frame(
-  category = factor(c(1, 2, 1, 3)),
-  value = c(10, 20, 15, 25)
+example
+# Load the required package
+library(data.table)
+
+# Create the data table
+dt <- data.table(
+  C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
+  COW = c(346, 346, 346, 346, 346),
+  B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
+  V2 = c(70, 70, 70, 70, 70),
+  V2A = c(70, 70, 70, 70, 70),
+  V3 = c(1, 2, 3, 4, 5),
+  V4 = c(1, 1, 1, 1, 1),
+  V5 = c(1, 1, 1, 1, 1),
+  V6 = c(1, 2, 2, 1, 2)
 )
 
-# Assign labels to the factor column
-attr(df$category, "labels") <- c('A' = 1, 'B' = 2, 'C' = 3)
+# Add column labels as attributes
+attr(dt$COW, "label") <- "colum1"
+attr(dt$V2, "label") <- "colum2"
+attr(dt$V2A, "label") <- "colum3"
+attr(dt$V4, "label") <- "colum4"
+attr(dt$V5, "label") <- "colum5"
+attr(dt$V6, "label") <- "colum6"
 
-# Retrieve labels for a specific column
-getLbl(df, "category")
+# Add value labels as attributes
+attr(dt$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+attr(dt$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+attr(dt$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+attr(dt$V4, "labels") <- c("Very important" = 1)
+attr(dt$V5, "labels") <- c("Very important" = 1)
+attr(dt$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
 
-# Set labels for all columns matching a pattern
-setLblPat(df, pattern = "^V")
 
-# Retrieve details for all columns
-colInfo(df)
+
+getLabel(df, "V3", limit = 3)
+setLabel(df, "V2", suffix = "_label")
+colInfo(df, limit = 2)
+listVars(df)
+#setLblPat(df, pattern = "V*")
+setlstLbl(df, columns = c('V5','V6'))
+setLblPat(df, pattern = "V")
+
+structure(df)
+
+
 ```
 
 ## Functions

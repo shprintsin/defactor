@@ -1,4 +1,4 @@
-# defactor package
+# defactor R package
 
 **defactor** is an R package that provides a set of tools for managing, annotating, and retrieving variable labels in data frames. The package allows for dynamic setting and extraction of labels based on patterns, column selections, or custom specifications, making it particularly useful for data cleaning, analysis, and preparation tasks where labeled data is critical for interpretation and reporting.
 

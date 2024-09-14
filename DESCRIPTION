@@ -1,0 +1,14 @@
+Package: defactor
+Type: Package
+Title: Tools for Managing and Annotating Data Frame Variables with Labels
+Version: 0.1.0
+Author: Shneior Shprintsin [aut, cre]
+Maintainer: Shneior Shprintsin <shnyor360@gmail.com>
+Description: Provides a set of functions to efficiently manage, annotate, and retrieve variable labels in data frames. This package allows for dynamic setting and extraction of labels based on patterns, column selections, or custom specifications. It is particularly useful for data cleaning, analysis, and preparation tasks where labeled data is critical for interpretation and reporting.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 3.5.0)
+Imports: haven, data.table
+Suggests: testthat

@@ -12,3 +12,4 @@ Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.5.0)
 Imports: haven, data.table
 Suggests: testthat
+RoxygenNote: 7.3.2

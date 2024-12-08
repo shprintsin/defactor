@@ -33,17 +33,22 @@ use_description(
   )
 )
 use_description(fields = list(Language = "es"))
+usethis::use_cran_comments()
+setwd('C:/cde/r/snlib/defactor/src')
 devtools::clean_dll() # If applicable
 devtools::build()
 devtools::check()
-devtools::check_win_devel()
 devtools::check_win_devel()
 devtools::check_win_release()
 devtools::check_win_oldrelease()
 rc_new_token()
 rhub::check()
+
 rhub_setup()
 rhub::rhub_doctor()
 rhub::rhub_check()
 rhub::rc_new_token()
 rc_submit("build/defactor_0.1.0.tar.gz")
+devtools::submit_cran(path = "build/defactor_0.1.0.tar.gz")
+devtools::submit_cran(pkg = ".", args = NULL)
+

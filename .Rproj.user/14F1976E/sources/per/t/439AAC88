@@ -1,0 +1,26 @@
+{
+    "id": "439AAC88",
+    "path": "C:/cde/r/snlib/defactor/R/getLabel.R",
+    "project_path": "R/getLabel.R",
+    "type": "r_source",
+    "hash": "549471406",
+    "contents": "",
+    "dirty": false,
+    "created": 1726311695781.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "36,2",
+        "scrollLine": "22"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1726313881,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1726313881109,
+    "read_only": false,
+    "read_only_alternatives": []
+}

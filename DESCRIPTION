@@ -2,7 +2,7 @@ Package: defactor
 Title: Tools for Managing and Annotating Data Frame Variables with Labels
 Version: 0.1.0
 Language: en-US
-Author:Shneior Shprintsin <shnyor360@gmail.com>
+Author: Shneior Shprintsin [aut, cre]
 Authors@R: person(given = "Shneior",
                     family = "Shprintsin",
                     role = c("aut", "cre"),

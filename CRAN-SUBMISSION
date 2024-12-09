@@ -1,32 +1,3 @@
 Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: fatal: detected dubious ownership in repository at
-        'C:/cde/r/snlib/defactor'
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: 'C:/cde/r/snlib/defactor' is owned by:
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: sn/shnyo (S-1-5-21-2902246990-821226734-3123935602-1001)
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: but the current user is:
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: sn/shn (S-1-5-21-2902246990-821226734-3123935602-1003)
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: To add an exception for this directory, call:
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA:
-
-Version: 0.1.0
-Date: 2024-12-09 00:29:24 UTC
-SHA: git config --global --add safe.directory C:/cde/r/snlib/defactor
+Date: 2024-12-09 00:37:55 UTC
+SHA: 776d4d94cff8a68983854a423e15683b2cdc6d58

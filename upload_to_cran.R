@@ -11,8 +11,7 @@ author=utils::person(
   family = "Shprintsin",
   email = "shnyor360@gmail.com")
 
-utils
-use_description(
+# use_description(
   fields = list(
     Package = "defactor",
     Title = "Tools for Managing and Annotating Data Frame Variables with Labels",
@@ -34,21 +33,20 @@ use_description(
 )
 use_description(fields = list(Language = "es"))
 usethis::use_cran_comments()
-setwd('C:/cde/r/snlib/defactor/src')
+setwd('C:/cde/r/snlib/defactor')
 devtools::clean_dll() # If applicable
+usethis::use_build_ignore("..Rcheck")
+usethis::use_build_ignore(".github")
 devtools::build()
 devtools::check()
-devtools::check_win_devel()
 devtools::check_win_release()
 devtools::check_win_oldrelease()
-rc_new_token()
-rhub::check()
-
-rhub_setup()
+devtools::check()
 rhub::rhub_doctor()
 rhub::rhub_check()
 rhub::rc_new_token()
-rc_submit("build/defactor_0.1.0.tar.gz")
-devtools::submit_cran(path = "build/defactor_0.1.0.tar.gz")
+rc_submit("../defactor_0.1.0.tar.gz")
 devtools::submit_cran(pkg = ".", args = NULL)
-
+library(devtools)
+release(pkg = ".", check = FALSE, args = NULL)
+spell_check()

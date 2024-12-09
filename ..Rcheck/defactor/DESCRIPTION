@@ -1,8 +1,9 @@
 Package: defactor
-Title: Tools for Managing and Annotating Data Frame Variables with Labels
+Title: Tools for Managing and Annotating Data Frame Variables with
+        Labels
 Version: 0.1.0
 Language: en-US
-Author:Shneior Shprintsin <shnyor360@gmail.com>
+Author: Shneior Shprintsin <shnyor360@gmail.com>
 Authors@R: person(given = "Shneior",
                     family = "Shprintsin",
                     role = c("aut", "cre"),
@@ -15,11 +16,9 @@ Description: Provides a set of functions to efficiently manage, annotate,
     data cleaning, analysis, and preparation tasks where labeled data is
     critical for interpretation and reporting.
 License: MIT + file LICENSE
-Depends: 
-    R (>= 3.5.0)
-Suggests: 
-    data.table,
-    testthat
+Depends: R (>= 3.5.0)
+Suggests: data.table, testthat
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Built: R 4.4.2; ; 2024-12-09 00:15:31 UTC; windows

@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^\.\.Rcheck$
+^\.\.github$
+^upload_to_cran\.R$
+^\.github$

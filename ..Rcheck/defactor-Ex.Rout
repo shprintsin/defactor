@@ -1,0 +1,385 @@
+
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "defactor"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> library('defactor')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("colInfo")
+> ### * colInfo
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: colInfo
+> ### Title: Get Details for All Columns
+> ### Aliases: colInfo
+> 
+> ### ** Examples
+> 
+> library(defactor)
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> colInfo(df, limit = 1)
+              var variable_label category_value         category_label
+1     C_COW_ALPHA                            NA        No Labels Found
+2             COW         colum1            346 Bosnia and Herzegovina
+3 B_COUNTRY_ALPHA                            NA        No Labels Found
+4              V2         colum2             70     Bosnia Herzegovina
+5             V2A         colum3             70     Bosnia Herzegovina
+6              V3                            NA        No Labels Found
+7              V4         colum4              1         Very important
+8              V5         colum5              1         Very important
+9              V6         colum6              1         Very important
+> 
+> 
+> 
+> cleanEx()
+
+detaching 'package:data.table'
+
+> nameEx("getLbl")
+> ### * getLbl
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getLbl
+> ### Title: Get Label for a Column
+> ### Aliases: getLbl
+> 
+> ### ** Examples
+> 
+> # Create a sample data frame with a factor column
+> # Load the package
+> library(defactor)
+> 
+> #Load the required package
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> 
+> 
+> 
+> cleanEx()
+
+detaching 'package:data.table'
+
+> nameEx("listVars")
+> ### * listVars
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: listVars
+> ### Title: Get Variable Labels
+> ### Aliases: listVars
+> 
+> ### ** Examples
+> 
+> library(defactor)
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> listVars(df)
+              var labels
+1     C_COW_ALPHA       
+2             COW colum1
+3 B_COUNTRY_ALPHA       
+4              V2 colum2
+5             V2A colum3
+6              V3       
+7              V4 colum4
+8              V5 colum5
+9              V6 colum6
+> 
+> 
+> 
+> cleanEx()
+
+detaching 'package:data.table'
+
+> nameEx("setLbl")
+> ### * setLbl
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: setLbl
+> ### Title: Set Label for a Column
+> ### Aliases: setLbl
+> 
+> ### ** Examples
+> 
+> library(defactor)
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> setLbl(df, "V5", suffix = "_label")
+[1] "V5: no labels Found"
+   C_COW_ALPHA   COW B_COUNTRY_ALPHA    V2   V2A    V3    V4    V5    V6
+        <char> <num>          <char> <num> <num> <num> <num> <num> <num>
+1:         BOS   346             BIH    70    70     1     1     1     1
+2:         BOS   346             BIH    70    70     2     1     1     2
+3:         BOS   346             BIH    70    70     3     1     1     2
+4:         BOS   346             BIH    70    70     4     1     1     1
+5:         BOS   346             BIH    70    70     5     1     1     2
+> 
+> 
+> 
+> cleanEx()
+
+detaching 'package:data.table'
+
+> nameEx("setLblPat")
+> ### * setLblPat
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: setLblPat
+> ### Title: Set Labels for All Columns by Pattern
+> ### Aliases: setLblPat
+> 
+> ### ** Examples
+> 
+> library(defactor)
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> setLblPat(df, pattern = "^V5")
+[1] "V5: no labels Found"
+   C_COW_ALPHA   COW B_COUNTRY_ALPHA    V2   V2A    V3    V4    V5    V6
+        <char> <num>          <char> <num> <num> <num> <num> <num> <num>
+1:         BOS   346             BIH    70    70     1     1     1     1
+2:         BOS   346             BIH    70    70     2     1     1     2
+3:         BOS   346             BIH    70    70     3     1     1     2
+4:         BOS   346             BIH    70    70     4     1     1     1
+5:         BOS   346             BIH    70    70     5     1     1     2
+> 
+> 
+> 
+> cleanEx()
+
+detaching 'package:data.table'
+
+> nameEx("setlstLbl")
+> ### * setlstLbl
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: setlstLbl
+> ### Title: Set Labels for All Columns by Selected Names
+> ### Aliases: setlstLbl
+> 
+> ### ** Examples
+> 
+> library(defactor)
+> library(data.table)
+> # Create the data table
+> df <- data.table(
++   C_COW_ALPHA = c("BOS", "BOS", "BOS", "BOS", "BOS"),
++   COW = c(346, 346, 346, 346, 346),
++   B_COUNTRY_ALPHA = c("BIH", "BIH", "BIH", "BIH", "BIH"),
++   V2 = c(70, 70, 70, 70, 70),
++   V2A = c(70, 70, 70, 70, 70),
++   V3 = c(1, 2, 3, 4, 5),
++   V4 = c(1, 1, 1, 1, 1),
++   V5 = c(1, 1, 1, 1, 1),
++   V6 = c(1, 2, 2, 1, 2)
++ )
+> 
+> # Add column labels as attributes
+> attr(df$COW, "label") <- "colum1"
+> attr(df$V2, "label") <- "colum2"
+> attr(df$V2A, "label") <- "colum3"
+> attr(df$V4, "label") <- "colum4"
+> attr(df$V5, "label") <- "colum5"
+> attr(df$V6, "label") <- "colum6"
+> 
+> # Add value labels as attributes
+> attr(df$COW, "labels") <- c("Bosnia and Herzegovina" = 346)
+> attr(df$V2, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V2A, "labels") <- c("Bosnia Herzegovina" = 70)
+> attr(df$V4, "labels") <- c("Very important" = 1)
+> attr(df$V5, "labels") <- c("Very important" = 1)
+> attr(df$V6, "labels") <- c("Very important" = 1, "Rather important" = 2)
+> setlstLbl(df, columns = c("V2", "V4"))
+[1] "V2: no labels Found"
+[1] "V4: no labels Found"
+   C_COW_ALPHA   COW B_COUNTRY_ALPHA    V2   V2A    V3    V4    V5    V6
+        <char> <num>          <char> <num> <num> <num> <num> <num> <num>
+1:         BOS   346             BIH    70    70     1     1     1     1
+2:         BOS   346             BIH    70    70     2     1     1     2
+3:         BOS   346             BIH    70    70     3     1     1     2
+4:         BOS   346             BIH    70    70     4     1     1     1
+5:         BOS   346             BIH    70    70     5     1     1     2
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+
+detaching 'package:data.table'
+
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.1 0.03 0.13 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

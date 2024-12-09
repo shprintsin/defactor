@@ -1,0 +1,6 @@
+colInfo                 Get Details for All Columns
+getLbl                  Get Label for a Column
+listVars                Get Variable Labels
+setLbl                  Set Label for a Column
+setLblPat               Set Labels for All Columns by Pattern
+setlstLbl               Set Labels for All Columns by Selected Names
